@@ -84,92 +84,102 @@
 <span id="84">84</span>
 <span id="85">85</span>
 <span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">Algorithm</span>;
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_gcd_of_strings</span>() {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">gcd_of_strings</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;ABCABCABC&quot;</span>), <span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;ABC&quot;</span>));
+        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">Algorithm</span>::<span class="ident">gcd_of_strings</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;ABCABCABC&quot;</span>), <span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;ABC&quot;</span>));
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">result</span>.<span class="ident">is_some</span>(), <span class="bool-val">true</span>);
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">result</span>.<span class="ident">unwrap</span>(), <span class="string">&quot;ABC&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">result1</span> <span class="op">=</span> <span class="ident">gcd_of_strings</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;HAHA&quot;</span>), <span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;ABC&quot;</span>));
+        <span class="kw">let</span> <span class="ident">result1</span> <span class="op">=</span> <span class="ident">Algorithm</span>::<span class="ident">gcd_of_strings</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;HAHA&quot;</span>), <span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;ABC&quot;</span>));
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">result1</span>.<span class="ident">is_none</span>(), <span class="bool-val">true</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_gcd</span>() {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">gcd</span>(<span class="number">8</span>, <span class="number">4</span>);
+        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">Algorithm</span>::<span class="ident">gcd</span>(<span class="number">8</span>, <span class="number">4</span>);
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">result</span>, <span class="number">4</span>);
 
-        <span class="kw">let</span> <span class="ident">result1</span> <span class="op">=</span> <span class="ident">gcd</span>(<span class="number">8</span>, <span class="number">6</span>);
+        <span class="kw">let</span> <span class="ident">result1</span> <span class="op">=</span> <span class="ident">Algorithm</span>::<span class="ident">gcd</span>(<span class="number">8</span>, <span class="number">6</span>);
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">result1</span>, <span class="number">2</span>);
     }
 }
 
-<span class="doccomment">/// 求两个字符串的最大公约字符串</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Arguments</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `str1` - 第一个字符串</span>
-<span class="doccomment">/// * `str2` - 第二个字符串</span>
-<span class="doccomment">/// </span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// use rust_algorithm::gcd_of_strings;</span>
-<span class="doccomment">/// let result = gcd_of_strings(String::from(&quot;ABCABCABC&quot;), String::from(&quot;ABC&quot;));</span>
-<span class="doccomment">/// assert_eq!(result.unwrap(), &quot;ABC&quot;);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gcd_of_strings</span>(<span class="ident">str1</span>: <span class="ident">String</span>, <span class="ident">str2</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="comment">// 先算出两者长度的最大公约数</span>
-    <span class="kw">let</span> <span class="ident">str1_len</span> <span class="op">=</span> <span class="ident">str1</span>.<span class="ident">len</span>();
-    <span class="kw">let</span> <span class="ident">str2_len</span> <span class="op">=</span> <span class="ident">str2</span>.<span class="ident">len</span>();
-    <span class="kw">let</span> <span class="ident">gcd_result</span> <span class="op">=</span> <span class="ident">gcd</span>(<span class="ident">str1_len</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">str2_len</span> <span class="kw">as</span> <span class="ident">i32</span>);
-    <span class="comment">// 取出公约数长度的前缀串</span>
-    <span class="kw">let</span> <span class="ident">prefix_str</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">str1</span>.<span class="ident">chars</span>().<span class="ident">take</span>(<span class="ident">gcd_result</span> <span class="kw">as</span> <span class="ident">usize</span>).<span class="ident">collect</span>();
-    <span class="comment">// 两个字符串必须都可以通过前缀串自我拼接多次得到</span>
-    <span class="kw">if</span> <span class="ident">gcd_of_strings_check</span>(<span class="ident">prefix_str</span>.<span class="ident">clone</span>(), <span class="ident">str1</span>, <span class="ident">gcd_result</span>) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">gcd_of_strings_check</span>(<span class="ident">prefix_str</span>.<span class="ident">clone</span>(), <span class="ident">str2</span>, <span class="ident">gcd_result</span>) {
-        <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">prefix_str</span>);
-    }
-    <span class="kw">return</span> <span class="prelude-val">None</span>;
-}
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Algorithm</span> {}
 
-<span class="kw">fn</span> <span class="ident">gcd_of_strings_check</span> (<span class="ident">prefix_str</span>: <span class="ident">String</span>, <span class="ident">str1</span>: <span class="ident">String</span>, <span class="ident">gcd_result</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">temp_str</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;&quot;</span>);
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">false</span>;
-    <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">1</span>..<span class="op">=</span><span class="ident">str1</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">i32</span> <span class="op">/</span> <span class="ident">gcd_result</span> {
-        <span class="ident">temp_str</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">prefix_str</span>; <span class="comment">// &amp;String可以自动转换为一个&amp;str。这个功能叫做Deref转换</span>
-        <span class="kw">if</span> <span class="ident">str1</span> <span class="op">=</span><span class="op">=</span> <span class="ident">temp_str</span> {
-            <span class="ident">result</span> <span class="op">=</span> <span class="bool-val">true</span>;
-            <span class="kw">break</span>;
+<span class="kw">impl</span> <span class="ident">Algorithm</span> {
+    <span class="doccomment">/// 求两个字符串的最大公约字符串</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// * `str1` - 第一个字符串</span>
+    <span class="doccomment">/// * `str2` - 第二个字符串</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Examples</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```rust</span>
+    <span class="doccomment">/// use rust_algorithm::Algorithm;</span>
+    <span class="doccomment">/// let result = Algorithm::gcd_of_strings(String::from(&quot;ABCABCABC&quot;), String::from(&quot;ABC&quot;));</span>
+    <span class="doccomment">/// assert_eq!(result.unwrap(), &quot;ABC&quot;);</span>
+    <span class="doccomment">/// ```</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gcd_of_strings</span>(<span class="ident">str1</span>: <span class="ident">String</span>, <span class="ident">str2</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+        <span class="comment">// 先算出两者长度的最大公约数</span>
+        <span class="kw">let</span> <span class="ident">str1_len</span> <span class="op">=</span> <span class="ident">str1</span>.<span class="ident">len</span>();
+        <span class="kw">let</span> <span class="ident">str2_len</span> <span class="op">=</span> <span class="ident">str2</span>.<span class="ident">len</span>();
+        <span class="kw">let</span> <span class="ident">gcd_result</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">gcd</span>(<span class="ident">str1_len</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">str2_len</span> <span class="kw">as</span> <span class="ident">i32</span>);
+        <span class="comment">// 取出公约数长度的前缀串</span>
+        <span class="kw">let</span> <span class="ident">prefix_str</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">str1</span>.<span class="ident">chars</span>().<span class="ident">take</span>(<span class="ident">gcd_result</span> <span class="kw">as</span> <span class="ident">usize</span>).<span class="ident">collect</span>();
+        <span class="comment">// 两个字符串必须都可以通过前缀串自我拼接多次得到</span>
+        <span class="kw">if</span> <span class="self">Self</span>::<span class="ident">gcd_of_strings_check</span>(<span class="ident">prefix_str</span>.<span class="ident">clone</span>(), <span class="ident">str1</span>, <span class="ident">gcd_result</span>)
+            <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">Self</span>::<span class="ident">gcd_of_strings_check</span>(<span class="ident">prefix_str</span>.<span class="ident">clone</span>(), <span class="ident">str2</span>, <span class="ident">gcd_result</span>)
+        {
+            <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">prefix_str</span>);
+        }
+        <span class="kw">return</span> <span class="prelude-val">None</span>;
+    }
+
+    <span class="kw">fn</span> <span class="ident">gcd_of_strings_check</span>(<span class="ident">prefix_str</span>: <span class="ident">String</span>, <span class="ident">str1</span>: <span class="ident">String</span>, <span class="ident">gcd_result</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">temp_str</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;&quot;</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">false</span>;
+        <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">1</span>..<span class="op">=</span><span class="ident">str1</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">i32</span> <span class="op">/</span> <span class="ident">gcd_result</span> {
+            <span class="ident">temp_str</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">prefix_str</span>; <span class="comment">// &amp;String可以自动转换为一个&amp;str。这个功能叫做Deref转换</span>
+            <span class="kw">if</span> <span class="ident">str1</span> <span class="op">=</span><span class="op">=</span> <span class="ident">temp_str</span> {
+                <span class="ident">result</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                <span class="kw">break</span>;
+            }
+        }
+        <span class="kw">return</span> <span class="ident">result</span>;
+    }
+
+    <span class="doccomment">/// 求两个数的最大公约数（greatest common divisor）</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Arguments</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// * `int1` - 第一个数</span>
+    <span class="doccomment">/// * `int2` - 第二个数</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Examples</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```rust</span>
+    <span class="doccomment">/// use rust_algorithm::Algorithm;</span>
+    <span class="doccomment">/// let result = Algorithm::gcd(8, 4);</span>
+    <span class="doccomment">/// assert_eq!(result, 4);</span>
+    <span class="doccomment">/// ```</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gcd</span>(<span class="ident">int1</span>: <span class="ident">i32</span>, <span class="ident">int2</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+        <span class="kw">if</span> <span class="ident">int1</span> <span class="op">%</span> <span class="ident">int2</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
+            <span class="kw">return</span> <span class="ident">int2</span>;
+        } <span class="kw">else</span> {
+            <span class="kw">return</span> <span class="self">Self</span>::<span class="ident">gcd</span>(<span class="ident">int2</span>, <span class="ident">int1</span> <span class="op">%</span> <span class="ident">int2</span>);
         }
     }
-    <span class="kw">return</span> <span class="ident">result</span>;
 }
-
-<span class="doccomment">/// 求两个数的最大公约数（greatest common divisor）</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Arguments</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `int1` - 第一个数</span>
-<span class="doccomment">/// * `int2` - 第二个数</span>
-<span class="doccomment">/// </span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// use rust_algorithm::gcd;</span>
-<span class="doccomment">/// let result = gcd(8, 4);</span>
-<span class="doccomment">/// assert_eq!(result, 4);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gcd</span>(<span class="ident">int1</span>: <span class="ident">i32</span>, <span class="ident">int2</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
-    <span class="kw">if</span> <span class="ident">int1</span> <span class="op">%</span> <span class="ident">int2</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
-        <span class="kw">return</span> <span class="ident">int2</span>;
-    } <span class="kw">else</span> {
-        <span class="kw">return</span> <span class="ident">gcd</span>(<span class="ident">int2</span>, <span class="ident">int1</span> <span class="op">%</span> <span class="ident">int2</span>);
-    }
-}
-
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g., <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g., <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g., <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "rust_algorithm";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
