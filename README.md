@@ -15,3 +15,5 @@ then
 ```
 cargo exec build
 ```
+
+## [Document](https://pefish.github.io/rust-algorithm/rust_algorithm/)
