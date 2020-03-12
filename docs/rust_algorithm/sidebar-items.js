@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["gcd","求两个数的最大公约数（greatest common divisor）"],["gcd_of_strings",""]]});
+initSidebarItems({"fn":[["gcd","求两个数的最大公约数（greatest common divisor）"],["gcd_of_strings","求两个字符串的最大公约字符串"]]});
