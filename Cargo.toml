@@ -1,0 +1,21 @@
+[package]
+name = "rust-algorithm"
+version = "0.1.0"
+authors = ["joy <joy.lai@zg.com>"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/pefish/rust-algorithm"
+documentation = "https://github.com/pefish/rust-algorithm"
+homepage = "https://github.com/pefish/rust-algorithm"
+description = """
+algorithm
+"""
+keywords = ["algorithm"]
+categories = ["algorithm"]
+exclude = ["/.travis.yml", "/appveyor.yml", ".gitignore"]
+autobenches = true
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
